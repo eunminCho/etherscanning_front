@@ -1,23 +1,21 @@
-import logo from './logo.svg';
 import './App.css';
+import Header from './components/Header';
+import Scanner from './components/Scanner';
+import Loading from './components/Loading';
+import { useState } from 'react';
 
 function App() {
+  const [isLoading, setIsLoading] = useState(false);
+  const handleLoading = (tf) => {
+    setIsLoading(tf)
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <div className="flex flex-col items-center">
+        <Header />
+        <Scanner handleLoading={handleLoading}/>
+      </div>
+      {isLoading ? <Loading /> : ''}
     </div>
   );
 }
